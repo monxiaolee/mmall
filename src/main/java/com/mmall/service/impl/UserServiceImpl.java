@@ -7,10 +7,12 @@ import com.mmall.service.IUserService;
 import com.mmall.util.MD5Util;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by limengxiao on 2018/7/18.
  */
+@Service("iUserService")
 public class UserServiceImpl implements IUserService {
 
     @Autowired
@@ -31,5 +33,10 @@ public class UserServiceImpl implements IUserService {
         user.setPassword(StringUtils.EMPTY);
 
         return ServerResponse.createBySuccess("登录成功", user);
+    }
+
+    @Override
+    public ServerResponse<String> register(User user) {
+        return null;
     }
 }
