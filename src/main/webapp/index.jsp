@@ -1,8 +1,6 @@
+<%@ page language="java"  contentType="text/html; charset=UTF-8" %>
 <html>
-<head>
-    <meta charset="utf-8">
-</head>
 <body>
-<h2>段能能测试</h2>
+<h2>测试页面</h2>
 </body>
 </html>

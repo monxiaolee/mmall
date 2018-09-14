@@ -6,9 +6,9 @@ import com.mmall.pojo.Category;
 import java.util.List;
 
 /**
- * Created by monxiaoLee on 2018/8/28.
+ * Created by limengxiao on 2018/9/14.
  */
-public class iCategoryService {
+public interface ICategoryService {
     ServerResponse addCategory(String categoryName, Integer parentId);
     ServerResponse updateCategoryName(Integer categoryId,String categoryName);
     ServerResponse<List<Category>> getChildrenParallelCategory(Integer categoryId);
