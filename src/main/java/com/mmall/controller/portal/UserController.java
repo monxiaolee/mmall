@@ -16,8 +16,9 @@ import javax.servlet.http.HttpSession;
 /**
  * Created by limengxiao on 2018/7/16.
  */
+
 @Controller
-@RequestMapping("/user/")
+@RequestMapping("/portal/user/")
 public class UserController {
 
     @Autowired
@@ -33,6 +34,9 @@ public class UserController {
     @RequestMapping(value = "login.do", method = RequestMethod.POST)
     @ResponseBody
     public ServerResponse<User> login(String username, String password, HttpSession session) {
+
+        System.out.println("ceshi");
+
         ServerResponse<User> response = iUserService.login(username, password);
         if(response.isSuccess()) {
             session.setAttribute(Const.CURRENT_USER, response.getData());
