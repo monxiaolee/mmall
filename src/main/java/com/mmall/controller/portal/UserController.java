@@ -35,7 +35,7 @@ public class UserController {
     @ResponseBody
     public ServerResponse<User> login(String username, String password, HttpSession session) {
 
-        System.out.println("ceshi");
+        System.out.println(username);
 
         ServerResponse<User> response = iUserService.login(username, password);
         if(response.isSuccess()) {
@@ -73,11 +73,11 @@ public class UserController {
         return ServerResponse.createByErrorMessage("用户未登录，无法获取当前用户信息");
     }
 
-    @RequestMapping(value = "forget_check_answer.do", method = RequestMethod.POST)
-    @ResponseBody
-    public ServerResponse<String> forgetGetQuestion(String username) {
-        return iUserService.selectQuestion(username);
-    }
+//    @RequestMapping(value = "forget_check_answer.do", method = RequestMethod.POST)
+//    @ResponseBody
+//    public ServerResponse<String> forgetGetQuestion(String username) {
+//        return iUserService.selectQuestion(username);
+//    }
 
     @RequestMapping(value = "forget_check_answer.do", method = RequestMethod.POST)
     @ResponseBody
