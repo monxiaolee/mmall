@@ -29,20 +29,27 @@ public class CategoryManageController {
 
     @RequestMapping("add_category.do")
     @ResponseBody
-    public ServerResponse addCategory(HttpSession session,String categoryName,@RequestParam(value = "parentId",defaultValue = "0") int parentId){
-        User user = (User)session.getAttribute(Const.CURRENT_USER);
-        if(user == null){
-            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"用户未登录,请登录");
-        }
-        //校验一下是否是管理员
-        if(iUserService.checkAdminRole(user).isSuccess()){
-            //是管理员
-            //增加我们处理分类的逻辑
-            return iCategoryService.addCategory(categoryName,parentId);
+    public ServerResponse addCategory(HttpSession session, String categoryName, @RequestParam(value = "parentId",defaultValue = "0") int parentId){
 
-        }else{
-            return ServerResponse.createByErrorMessage("无权限操作,需要管理员权限");
-        }
+//        System.out.println("品类名称：" + categoryName);
+//        System.out.println("商品类别：" + parentId);
+
+//        先测试走通
+        return iCategoryService.addCategory(categoryName,parentId);
+
+//        User user = (User)session.getAttribute(Const.CURRENT_USER);
+//        if(user == null){
+//            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),"用户未登录,请登录");
+//        }
+//        //校验一下是否是管理员
+//        if(iUserService.checkAdminRole(user).isSuccess()){
+//            //是管理员
+//            //增加我们处理分类的逻辑
+//            return iCategoryService.addCategory(categoryName,parentId);
+//
+//        }else{
+//            return ServerResponse.createByErrorMessage("无权限操作,需要管理员权限");
+//        }
     }
 
 }

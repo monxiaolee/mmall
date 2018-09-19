@@ -5,6 +5,8 @@ import com.mmall.dao.CategoryMapper;
 import com.mmall.pojo.Category;
 import com.mmall.service.ICategoryService;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +18,15 @@ import java.util.List;
 
 @Service("iCategoryService")
 public class CategoryServiceImpl implements ICategoryService {
+
+    @Autowired
+    private CategoryMapper categoryMapper;
+
     @Override
     public ServerResponse addCategory(String categoryName, Integer parentId) {
+        System.out.println("执行了。。。");
 
-        @Autowired
-        private CategoryMapper categoryMapper;
+//        private Logger logger = LoggerFactory.getLogger(CategoryServiceImpl.class);
 
         if(parentId == null || StringUtils.isBlank(categoryName)) {
             return ServerResponse.createByErrorMessage("添加品类参数错误");
@@ -31,14 +37,23 @@ public class CategoryServiceImpl implements ICategoryService {
         category.setParentId(parentId);
         category.setStatus(true);//这个分类是可用的
 
+        System.out.println(category);
+
         int rowCount = categoryMapper.insert(category);
 
         if(rowCount > 0) {
             return ServerResponse.createBySuccessMessage("添加品类成功");
         }
-        return ServerResponse.createByErrorMessage("添加品类失败");
+        return ServerResponse.createByErrorMessage("添加商品失败");
 
-        return null;
+//        int rowCount = categoryMapper.insert(category);
+//
+//        if(rowCount > 0) {
+//            return ServerResponse.createBySuccessMessage("添加品类成功");
+//        }
+//        return ServerResponse.createByErrorMessage("添加品类失败");
+
+//        return null;
     }
 
     @Override
