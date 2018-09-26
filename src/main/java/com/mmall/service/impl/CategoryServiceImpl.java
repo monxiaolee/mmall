@@ -4,6 +4,7 @@ import com.mmall.common.ServerResponse;
 import com.mmall.dao.CategoryMapper;
 import com.mmall.pojo.Category;
 import com.mmall.service.ICategoryService;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +19,7 @@ import java.util.List;
 
 @Service("iCategoryService")
 public class CategoryServiceImpl implements ICategoryService {
+    private Logger logger = LoggerFactory.getLogger(CategoryServiceImpl.class);
 
     @Autowired
     private CategoryMapper categoryMapper;
@@ -61,10 +63,23 @@ public class CategoryServiceImpl implements ICategoryService {
         return null;
     }
 
-    @Override
+
     public ServerResponse<List<Category>> getChildrenParallelCategory(Integer categoryId) {
-        return null;
+        // 这里的categoryMapper是从dao层的categoryMapper 引入的
+        List<Category> categoryList = categoryMapper.selectCategoryChildrenByParentId(categoryId);
+        System.out.println("输出结果->");
+        System.out.println(categoryList);
+        if(CollectionUtils.isEmpty(categoryList)) {
+            logger.info("未找到当前分类的子分类");
+        }
+        return ServerResponse.createBySuccess(categoryList);
     }
+
+    /**
+     * 递归查询本节点的id及孩子节点的id
+     * @param categoryId
+     * @return
+     */
 
     @Override
     public ServerResponse<List<Integer>> selectCategoryAndChildrenById(Integer categoryId) {

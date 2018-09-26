@@ -52,4 +52,10 @@ public class CategoryManageController {
 //        }
     }
 
+    @RequestMapping("get_category.do")
+    @ResponseBody
+    public ServerResponse getChildrenParallelCategory(HttpSession session, @RequestParam(value = "categoryId", defaultValue = "0") Integer categoryId) {
+        return iCategoryService.getChildrenParallelCategory(categoryId);
+    }
+
 }
