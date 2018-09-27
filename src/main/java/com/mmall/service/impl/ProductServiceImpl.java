@@ -19,11 +19,13 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     public ServerResponse saveOrUpdateProduct(Product product) {
+
         if(product != null) {
             if(product.getId() != null) {
                 // 更新产品逻辑
             } else {
                 // 添加产品逻辑
+                System.out.println("添加商品。。。");
                 int rowCount = productMapper.insert(product);
                 if(rowCount > 0) {
                     return ServerResponse.createBySuccessMessage("新增产品成功");
