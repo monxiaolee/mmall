@@ -44,7 +44,8 @@ public class ProductManageController {
     @ResponseBody
     public ServerResponse upload(HttpSession session, @RequestParam(value = "upload_file", required = false) MultipartFile file, HttpServletRequest request) {
         String path = request.getSession().getServletContext().getRealPath("upload");
-        String targetFileName = iFileService.upload(file,path);
+        String targetFileName = iFileService.upload(file, path);
+        System.out.println(targetFileName);
         return null;
     }
 }
