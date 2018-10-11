@@ -26,7 +26,8 @@ public class ProductController {
                                          @RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
                                          @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
                                          @RequestParam(value = "orderBy", defaultValue = "") String orderBy) {
-        System.out.println("ceshi");
+        System.out.println(keyword);
+        System.out.println(categoryId);
 //        return null;
 
         return iProductService.getProductByKeywordCategory(keyword, categoryId, pageNum, pageSize, orderBy);

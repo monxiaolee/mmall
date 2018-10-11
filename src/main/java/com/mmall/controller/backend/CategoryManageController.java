@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
  * Created by monxiaoLee on 2018/8/26.
  */
 @Controller
-@RequestMapping("manage/caterogy")
+@RequestMapping({"manage/caterogy", "portal/caterogy"})
 public class CategoryManageController {
 
     @Autowired
